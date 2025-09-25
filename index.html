@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garbage Image Classification Demo</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    
+</head>
+<body>
+    <header>
+        <h1>Garbage Image Classification</h1>
+        <h3>Built with FastAI & TensorFlow.js</h3>
+
+        <nav>
+            <a href="#" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('project-overview')">Project Overview</a>
+            <a href="#" onclick="showPage('source')">Source Code</a>
+        </nav>
+    </header>
+    
+    <main>
+
+        <!-- HOME -->
+        <div id="home" class="page">
+            <div>
+                <h2>Upload Image</h2>
+
+                <!-- Input asli -->
+                <input type="file" id="fileInput" accept="image/*" capture="environment" style="display:none">
+
+                <!-- Tombol custom -->
+                <button class="custom-btn" onclick="document.getElementById('fileInput').click()">📷 Upload Photo / Galery</button>
+            
+                <img id="preview" class="preview">
+            </div>
+        
+            <div>
+                <h2>Result/Classification</h2>
+
+                <div id="result" class="result">Waiting for input .... </div>
+                <p>lorem ipsum sit amet dolodvjewvew ndjv ewijv</p>            
+            <div>
+                <h2>Grad CAM</h2>
+                <p>ijwijcev91r3v1</p>
+            </div>
+        </div>
+
+
+        <!-- PROJECT OVERVIEW -->
+        <div id="project-overview" class="page" style="display:none">
+
+            <!-- Toggle Languange -->
+            <div class="lang-toggle">
+                <button onclick="setLanguage('id')">🇮🇩 Bahasa</button>
+                <button onclick="setLanguage('en')">🇬🇧 English</button>
+            </div>
+
+            <!-- Indonesia -->
+            <section class="overview lang lang-id">
+                <h2>Deskripsi Proyek</h2>
+                <p>
+                <span class="highlight">Garbage Image Classification</span> adalah aplikasi berbasis Artificial Intelligence (AI) 
+                yang mampu mengklasifikasikan jenis sampah menjadi tiga kategori utama: 
+                <b>Plastik</b>, <b>Gelas</b>, dan <b>Metal</b>.
+                </p>
+                <p>
+                Pengguna cukup mengunggah foto sampah melalui browser, lalu sistem akan secara otomatis mengklasifikasikan jenis 
+                sampah berdasarkan model yang sudah dilatih. Proyek ini bertujuan untuk menunjukkan bagaimana teknologi AI dapat 
+                diintegrasikan ke dalam kehidupan sehari-hari untuk mendukung pengelolaan sampah yang lebih cerdas dan berkelanjutan.
+                </p>
+                <p>
+                Model dilatih menggunakan <b>FastAI</b> dan kemudian di-deploy ke web menggunakan <b>TensorFlow.js</b>, 
+                sehingga aplikasi ini dapat dijalankan langsung di browser tanpa memerlukan server tambahan atau instalasi khusus.
+                </p>
+
+                <h2>Dataset</h2>
+                <p>
+                Proyek ini menggunakan dataset publik dari Kaggle: 
+                <a href="https://www.kaggle.com/datasets/sumn2u/garbage-classification-v2" target="_blank">
+                    Garbage Classification V2
+                </a>
+                </p>
+                <p>Dataset ini berisi ribuan gambar sampah yang dikelompokkan ke dalam 3 kelas:</p>
+                <ul>
+                <li>Plastik</li>
+                <li>Gelas</li>
+                <li>Metal</li>
+                </ul>
+                <p>
+                Dataset ini menjadi dasar pelatihan model sehingga mampu mengenali perbedaan visual antar kategori dengan tingkat akurasi yang baik.
+                </p>
+
+                <h2>Manfaat Proyek</h2>
+                <ul>
+                <li><b>Mendukung Sustainability & ESG</b> → membantu program keberlanjutan perusahaan melalui pemilahan sampah yang lebih efisien.</li>
+                <li><b>Efisiensi Operasional</b> → mempercepat proses identifikasi dan pemisahan sampah, mengurangi ketergantungan pada tenaga manual.</li>
+                <li><b>Proof-of-Concept AI untuk Manajemen Sampah</b> → menunjukkan bagaimana AI modern dapat diimplementasikan langsung di browser untuk solusi nyata.</li>
+                <li><b>Edukasi Masyarakat</b> → menjadi media edukasi agar masyarakat terbiasa melakukan pemilahan sampah dengan bantuan teknologi.</li>
+                </ul>
+
+                <h2>Potensi Pengembangan</h2>
+                <ul>
+                <li>Menambahkan lebih banyak kategori sampah seperti organik, kertas, dan residu.</li>
+                <li>Integrasi dengan IoT (misalnya kamera otomatis di tempat sampah pintar).</li>
+                <li>Dashboard analitik real-time untuk memonitor jumlah dan jenis sampah yang terklasifikasi.</li>
+                <li>Pengembangan skala industri untuk mendukung sistem pengelolaan sampah perkotaan.</li>
+                </ul>
+
+                <h2>Tools</h2>
+                <h3>Tools yang Digunakan</h3>
+                <ul>
+                <li><b><a href="https://www.fast.ai/" target="_blank">FastAI</a></b></li>
+                <li><b><a href="https://www.tensorflow.org/js" target="_blank">TensorFlow.js</a></b></li>
+                <li><b><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML</a>, 
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">CSS</a>, 
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JavaScript</a></b></li>
+                </ul>
+
+                <h2>Kesimpulan</h2>
+                <p>
+                Proyek <b>Garbage Image Classification</b> ini tidak hanya berfungsi sebagai demo teknis, tetapi juga sebagai <i>proof-of-concept</i> 
+                bagaimana AI dapat membantu transformasi digital dalam pengelolaan sampah. 
+                Dengan menggunakan dataset publik dan tools open-source berlisensi permisif, proyek ini dapat dikembangkan lebih jauh 
+                untuk mendukung inisiatif lingkungan, efisiensi operasional, serta edukasi masyarakat.
+                </p>
+            </section>
+
+            <!-- English -->
+            <section class="overview lang lang-en" style="display:none">
+                <h2>Project Description</h2>
+                <p>
+                <span class="highlight">Garbage Image Classification</span> is an AI-powered application 
+                capable of classifying waste into three main categories: 
+                <b>Plastic</b>, <b>Glass</b>, and <b>Metal</b>.
+                </p>
+                <p>
+                Users can simply upload a photo of waste through the browser, and the system will 
+                automatically classify it based on the trained model. 
+                This project aims to demonstrate how AI can be integrated into 
+                everyday life to support smarter and more sustainable waste management.
+                </p>
+                <p>
+                The model was trained using <b>FastAI</b> and deployed to the web with <b>TensorFlow.js</b>, 
+                allowing the application to run directly in the browser without requiring any additional servers or installations.
+                </p>
+
+                <h2>Dataset</h2>
+                <p>
+                This project uses a public dataset from Kaggle: 
+                <a href="https://www.kaggle.com/datasets/sumn2u/garbage-classification-v2" target="_blank">
+                    Garbage Classification V2
+                </a>
+                </p>
+                <p>The dataset contains thousands of waste images categorized into three classes:</p>
+                <ul>
+                <li>Plastic</li>
+                <li>Glass</li>
+                <li>Metal</li>
+                </ul>
+                <p>
+                This dataset forms the foundation of the training process, enabling the model 
+                to distinguish visual differences between categories with a solid level of accuracy.
+                </p>
+
+                <h2>Project Benefits</h2>
+                <ul>
+                <li><b>Supporting Sustainability & ESG</b> → helps corporate sustainability programs by enabling more efficient waste sorting.</li>
+                <li><b>Operational Efficiency</b> → speeds up the identification and separation process, reducing reliance on manual labor.</li>
+                <li><b>Proof-of-Concept AI for Waste Management</b> → demonstrates how modern AI can be implemented directly in the browser for real-world solutions.</li>
+                <li><b>Public Education</b> → serves as an educational tool to encourage communities to adopt waste sorting with the help of technology.</li>
+                </ul>
+
+                <h2>Future Development</h2>
+                <ul>
+                <li>Add more waste categories such as organic, paper, and residual waste.</li>
+                <li>Integration with IoT (e.g., automated cameras in smart bins).</li>
+                <li>Real-time analytics dashboard to monitor the amount and type of classified waste.</li>
+                <li>Industrial-scale development to support urban waste management systems.</li>
+                </ul>
+
+                <h2>Tools</h2>
+                <h3>Technologies Used</h3>
+                <ul>
+                <li><b><a href="https://www.fast.ai/" target="_blank">FastAI</a></b></li>
+                <li><b><a href="https://www.tensorflow.org/js" target="_blank">TensorFlow.js</a></b></li>
+                <li><b><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML</a>, 
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">CSS</a>, 
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JavaScript</a></b></li>
+                </ul>
+
+                <h2>Conclusion</h2>
+                <p>
+                The <b>Garbage Image Classification</b> project is not only a technical demo, 
+                but also a <i>proof-of-concept</i> of how AI can support digital transformation 
+                in waste management. By leveraging public datasets and open-source tools 
+                under permissive licenses, this project can be further expanded to support environmental initiatives, 
+                operational efficiency, and public education.
+                </p>
+            </section>
+        </div>
+
+
+
+        <!-- SOURCE CODE -->
+        <div id="source" class="page" style="display:none">
+            <h2>Source Code</h2>
+            <pre>console.log("code here")</pre>
+        </div>
+        
+        
+
+        
+
+
+        
+
+        
+    </main>
+    
+    <footer>
+        <p>
+            &copy; 2025 - AryaHisma
+        </p>
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
