@@ -64,7 +64,7 @@ async function runInference(imgElement) {
     const prediction = labels[argMax];
 
     // Tampilkan hasil
-    document.getElementById("result").innerText = 'Predicted: ${prediction} (class ${argMax})';
+    document.getElementById("result").innerText = `Predicted: ${prediction} (class ${argMax})`;
 }
 
 // MOVING PAGE
