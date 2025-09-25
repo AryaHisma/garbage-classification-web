@@ -1,6 +1,6 @@
 // --- LOAD MODEL ---
 let session;
-const labels = ["Plastic", "Glass", "Metal"]; // Sesuaikan dengan dls.vocab dari FastAI
+const labels = ["Glass", "Metal", "Plastic"]; // Sesuaikan dengan dls.vocab dari FastAI
 
 async function loadModel() {
     try {
