@@ -18,21 +18,14 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         reader.onload = function(e) {
         const preview = document.getElementById('preview');
         preview.src = e.target.result;
-        preview.style.display = "block"; // tampilkan setelah ada foto
+        preview.style.display = "block"; 
+        // Panggil inferensi setelah gambar siap
+        preview.onload = () => runInference(preview);
         };
         reader.readAsDataURL(file);
     }
     });
 
-
-reader.onload = function(e) {
-    const preview = document.getElementById('preview');
-    preview.src = e.target.result;
-    preview.style.display = "block";
-
-    // Panggil inferensi setelah gambar siap
-    preview.onload = () => runInference(preview);
-};
 
 
 // --- RUN INFERENCE ---
