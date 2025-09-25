@@ -4,7 +4,7 @@ const labels = ["Glass", "Metal", "Plastic"]; // Sesuaikan dengan dls.vocab dari
 
 async function loadModel() {
     try {
-        session = await ort.InferenceSession.create("model.onnx");
+        session = await ort.InferenceSession.create("model_mobilenet_v3_small.onnx");
         console.log("ONNX model loaded");
         console.log("Input names:", session.inputNames);
         console.log("Output names:", session.outputNames);
