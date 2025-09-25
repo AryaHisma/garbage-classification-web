@@ -25,6 +25,15 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
     });
 
 
+reader.onload = function(e) {
+    const preview = document.getElementById('preview');
+    preview.src = e.target.result;
+    preview.style.display = "block";
+
+    // Panggil inferensi setelah gambar siap
+    preview.onload = () => runInference(preview);
+};
+
 
 // --- RUN INFERENCE ---
 async function runInference(imgElement) {
@@ -62,7 +71,7 @@ async function runInference(imgElement) {
     const prediction = labels[argMax];
 
     // Tampilkan hasil
-    document.getElementById("result").innerText = "JS sudah terkoneksi!";
+    document.getElementById("result").innerText = 'Predicted: ${prediction} (class ${argMax})';
 }
 
 // MOVING PAGE
