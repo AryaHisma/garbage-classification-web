@@ -52,8 +52,8 @@ async function runInference(imgElement) {
 
         const float32Data = new Float32Array(3 * 224 * 224);
         for (let i = 0; i < 224 * 224; i++) {
-            float32Data[i] = (data[i * 4] / 255 - 0.485) / 0.229;              // R
-            float32Data[i + 224 * 224] = (data[i * 4 + 1] / 255 - 0.456) / 0.224; // G
+            float32Data[i] = (data[i * 4] / 255 - 0.485) / 0.229;                  // R
+            float32Data[i + 224 * 224] = (data[i * 4 + 1] / 255 - 0.456) / 0.224;  // G
             float32Data[i + 2 * 224 * 224] = (data[i * 4 + 2] / 255 - 0.406) / 0.225; // B
         }
 
@@ -67,17 +67,25 @@ async function runInference(imgElement) {
         const outputName = session.outputNames[0];
         const output = results[outputName].data;
 
-        const argMax = output.indexOf(Math.max(...output));
-        const prediction = labels[argMax];
+        // --- Softmax stabil ---
+        function softmax(arr) {
+            const maxVal = Math.max(...arr);
+            const exps = arr.map(v => Math.exp(v - maxVal));
+            const sum = exps.reduce((a, b) => a + b, 0);
+            return exps.map(v => v / sum);
+        }
 
-        // --- Confidence ---
-        const maxScore = output[argMax];
-        const confidence = (maxScore * 100).toFixed(2);
+        const probabilities = softmax(Array.from(output));
+
+        // --- Prediksi utama ---
+        const argMax = probabilities.indexOf(Math.max(...probabilities));
+        const prediction = labels[argMax];
+        const confidence = (probabilities[argMax] * 100).toFixed(2);
 
         // --- Top-3 predictions ---
         const topK = 3;
-        const sorted = output
-            .map((score, idx) => ({ label: labels[idx], score }))
+        const sorted = probabilities
+            .map((p, idx) => ({ label: labels[idx], score: p }))
             .sort((a, b) => b.score - a.score)
             .slice(0, topK);
 
@@ -85,20 +93,21 @@ async function runInference(imgElement) {
             .map(item => `${item.label}: ${(item.score * 100).toFixed(2)}%`)
             .join("<br>");
 
-        // --- Update HTML (semua jadi satu blok) ---
+        // --- Update HTML ---
         document.getElementById("result").innerHTML =
             `Predicted: ${prediction} (class ${argMax})<br>
              Confidence: ${confidence}%<br><br>
              Top-${topK} Predictions:<br>${topKText}<br><br>
              Inference Time: ${(end - start).toFixed(2)} ms`;
 
-        console.log("Inference results:", results);
+        console.log("Probabilities:", probabilities);
 
     } catch (err) {
         console.error("Error saat inference:", err);
         document.getElementById("result").innerText = "Error saat inference, cek console.";
     }
 }
+
 
 
 
