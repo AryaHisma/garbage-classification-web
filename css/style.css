@@ -105,8 +105,8 @@ main {
 #home > div:nth-child(3) { flex: 3; } /* Grad CAM besar */
 
 #home > div > img#preview {
-    padding: 5px;
-    margin-top: 5px;
+    padding: 10px;
+    margin-top: 10px;
     max-width: 500px;
     max-height: 500px;
     object-fit: contain; 
