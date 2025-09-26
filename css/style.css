@@ -104,8 +104,8 @@ main {
 #home > div > img#preview {
     padding: 5px;
     margin-top: 5px;
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 500px;
+    max-height: 500px;
     object-fit: contain; 
     border: 1px solid #ddd;
     border-radius: 8px;
