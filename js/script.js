@@ -31,7 +31,6 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 });
 
 
-// --- RUN INFERENCE ---
 async function runInference(imgElement) {
     if (!session) {
         document.getElementById("result").innerText = "Model belum siap...";
@@ -39,7 +38,9 @@ async function runInference(imgElement) {
     }
 
     try {
-        // Convert image ke tensor [1,3,224,224]
+        const start = performance.now();
+
+        // --- Preprocessing image ---
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
         canvas.width = 224;
@@ -52,7 +53,6 @@ async function runInference(imgElement) {
         const float32Data = new Float32Array(3 * 224 * 224);
 
         for (let i = 0; i < 224 * 224; i++) {
-            // Normalisasi sesuai preprocessing FastAI
             float32Data[i] = (data[i * 4] / 255 - 0.485) / 0.229;       // R
             float32Data[i + 224 * 224] = (data[i * 4 + 1] / 255 - 0.456) / 0.224; // G
             float32Data[i + 2 * 224 * 224] = (data[i * 4 + 2] / 255 - 0.406) / 0.225; // B
@@ -63,21 +63,46 @@ async function runInference(imgElement) {
 
         console.log("Running inference...");
         const results = await session.run(feeds);
-
-        console.log("Inference results:", results);
+        const end = performance.now();
 
         const outputName = session.outputNames[0];
         const output = results[outputName].data;
+
         const argMax = output.indexOf(Math.max(...output));
         const prediction = labels[argMax];
 
-        document.getElementById("result").innerText = `Predicted: ${prediction} (class ${argMax})`;
+        // --- Confidence ---
+        const maxScore = output[argMax];
+        const confidence = (maxScore * 100).toFixed(2);
+
+        // --- Top-3 predictions ---
+        const topK = 3;
+        const sorted = output
+            .map((score, idx) => ({ label: labels[idx], score }))
+            .sort((a, b) => b.score - a.score)
+            .slice(0, topK);
+
+        const topKText = sorted
+            .map(item => `${item.label}: ${(item.score * 100).toFixed(2)}%`)
+            .join("\n");
+
+        // --- Update HTML ---
+        document.getElementById("result").innerHTML =
+            `<b>Predicted:</b> ${prediction} (class ${argMax})<br>
+             <b>Confidence:</b> ${confidence}%`;
+
+        document.getElementById("inference-details").innerHTML =
+            `<b>Top-${topK} Predictions:</b><br><pre>${topKText}</pre>
+             <b>Inference Time:</b> ${(end - start).toFixed(2)} ms`;
+
+        console.log("Inference results:", results);
 
     } catch (err) {
         console.error("Error saat inference:", err);
         document.getElementById("result").innerText = "Error saat inference, cek console.";
     }
 }
+
 
 
 // --- MOVING PAGE ---
