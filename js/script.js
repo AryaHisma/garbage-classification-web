@@ -65,7 +65,13 @@ async function runInference(imgElement) {
         const end = performance.now();
 
         const outputName = session.outputNames[0];
-        const output = results[outputName].data;
+        let output = results[outputName].data;
+
+        // --- Pastikan array jadi flat Float32Array ---
+        output = Array.from(output);  
+        if (output.length === 0) {
+            throw new Error("Output kosong dari model");
+        }
 
         // --- Softmax stabil ---
         function softmax(arr) {
@@ -75,7 +81,7 @@ async function runInference(imgElement) {
             return exps.map(v => v / sum);
         }
 
-        const probabilities = softmax(Array.from(output));
+        const probabilities = softmax(output);
 
         // --- Prediksi utama ---
         const argMax = probabilities.indexOf(Math.max(...probabilities));
@@ -100,13 +106,14 @@ async function runInference(imgElement) {
              Top-${topK} Predictions:<br>${topKText}<br><br>
              Inference Time: ${(end - start).toFixed(2)} ms`;
 
-        console.log("Probabilities:", probabilities);
+        console.log("Probabilities:", probabilities.slice(0, 10)); // debug 10 besar
 
     } catch (err) {
         console.error("Error saat inference:", err);
         document.getElementById("result").innerText = "Error saat inference, cek console.";
     }
 }
+
 
 
 
