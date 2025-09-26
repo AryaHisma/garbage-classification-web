@@ -33,7 +33,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 
 async function runInference(imgElement) {
     if (!session) {
-        document.getElementById("result").innerText = "Model belum siap...";
+        document.getElementById("result").innerText = "Process in model ...";
         return;
     }
 
