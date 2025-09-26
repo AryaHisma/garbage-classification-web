@@ -8,7 +8,7 @@
 **Garbage Image Classification** adalah aplikasi berbasis Artificial Intelligence (AI) yang mampu mengklasifikasikan sampah menjadi tiga kategori utama: **Plastik**, **Gelas**, dan **Metal**.  
 
 Pengguna cukup mengunggah foto sampah melalui browser, lalu sistem akan secara otomatis mengklasifikasikan jenis sampah berdasarkan model yang sudah dilatih.  
-Model dilatih menggunakan **FastAI** dan di-deploy ke web menggunakan **TensorFlow.js**, sehingga aplikasi ini dapat berjalan langsung di browser tanpa memerlukan server tambahan.
+Model dilatih menggunakan **FastAI** dan di-deploy ke web menggunakan **ONNX Runtime Web**, sehingga aplikasi ini dapat berjalan langsung di browser tanpa memerlukan server tambahan.
 
 ---
 
@@ -41,7 +41,7 @@ Dataset berisi ribuan gambar sampah yang dikelompokkan ke dalam tiga kelas:
 
 ## Tools yang Digunakan
 - [FastAI](https://www.fast.ai/) 
-- [TensorFlow.js](https://www.tensorflow.org/js)   
+- [ONNX Runtime Web](https://onnxruntime.ai/)   
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)  
 
 ---

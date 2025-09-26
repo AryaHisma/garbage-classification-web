@@ -8,7 +8,7 @@
 **Garbage Image Classification** is an AI-powered web application capable of classifying waste into three main categories: **Plastic**, **Glass**, and **Metal**.  
 
 Users can upload a photo of waste through the browser, and the system will automatically classify it based on the trained model.  
-The model was trained using **FastAI** and deployed on the web using **TensorFlow.js**, enabling it to run directly in the browser without additional servers.
+The model was trained using **FastAI** and deployed on the web using **ONNX Runtime Web**, enabling it to run directly in the browser without additional servers.
 
 ---
 
@@ -40,8 +40,8 @@ The dataset contains thousands of waste images categorized into three classes:
 ---
 
 ## Technologies Used
-- [FastAI](https://www.fast.ai/) (Apache 2.0 License)  
-- [TensorFlow.js](https://www.tensorflow.org/js) (Apache 2.0 License)  
+- [FastAI](https://www.fast.ai/) 
+- [ONNX Runtime Web](https://onnxruntime.ai/) 
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)  
 
 ---
