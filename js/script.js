@@ -51,9 +51,8 @@ async function runInference(imgElement) {
         const { data } = imageData;
 
         const float32Data = new Float32Array(3 * 224 * 224);
-
         for (let i = 0; i < 224 * 224; i++) {
-            float32Data[i] = (data[i * 4] / 255 - 0.485) / 0.229;       // R
+            float32Data[i] = (data[i * 4] / 255 - 0.485) / 0.229;              // R
             float32Data[i + 224 * 224] = (data[i * 4 + 1] / 255 - 0.456) / 0.224; // G
             float32Data[i + 2 * 224 * 224] = (data[i * 4 + 2] / 255 - 0.406) / 0.225; // B
         }
@@ -84,16 +83,14 @@ async function runInference(imgElement) {
 
         const topKText = sorted
             .map(item => `${item.label}: ${(item.score * 100).toFixed(2)}%`)
-            .join("\n");
+            .join("<br>");
 
-        // --- Update HTML ---
+        // --- Update HTML (semua jadi satu blok) ---
         document.getElementById("result").innerHTML =
-            `<b>Predicted:</b> ${prediction} (class ${argMax})<br>
-             <b>Confidence:</b> ${confidence}%`;
-
-        document.getElementById("inference-details").innerHTML =
-            `<b>Top-${topK} Predictions:</b><br><pre>${topKText}</pre>
-             <b>Inference Time:</b> ${(end - start).toFixed(2)} ms`;
+            `Predicted: ${prediction} (class ${argMax})<br>
+             Confidence: ${confidence}%<br><br>
+             Top-${topK} Predictions:<br>${topKText}<br><br>
+             Inference Time: ${(end - start).toFixed(2)} ms`;
 
         console.log("Inference results:", results);
 
