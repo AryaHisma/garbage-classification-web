@@ -196,7 +196,18 @@ img.preview {
   margin-bottom: 8px;
 }
 
-
+/* SOURCE CODE */
+.source {
+  max-width: 800px;
+  margin: 1px 1px;
+  background: #fff;
+  padding-top: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1px solid black;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  text-align: left;
+}
 
 /*FOOTER*/
 footer {
