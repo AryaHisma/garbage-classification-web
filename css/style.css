@@ -47,7 +47,7 @@ header nav {
     gap: 15px;           /* cukup pakai gap, tidak perlu margin di <a> */
     background: #333; 
     padding: 10px;
-    flex-wrap: wrap;     /* biar responsif di layar kecil */
+    flex-wrap: wrap;    /* biar responsif di layar kecil */
 }
 
 header nav a {
@@ -58,6 +58,7 @@ header nav a {
     border-radius: 5px;
     transition: background 0.3s;
     white-space: nowrap; /* cegah teks terpotong jadi 2 baris */
+    border: 1px solid #fff;
 }
 
 header nav a:hover {
