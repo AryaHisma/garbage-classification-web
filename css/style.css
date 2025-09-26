@@ -103,7 +103,6 @@ main {
 /* Atur proporsi */
 #home > div:nth-child(1) { flex: 3; } /* Upload Image lebih besar */
 #home > div:nth-child(2) { flex: 1; } /* Result kecil */
-#home > div:nth-child(3) { flex: 3; } /* Grad CAM besar */
 
 #home > div > img#preview {
     padding: 10px;
